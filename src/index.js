@@ -82,7 +82,7 @@ app.put("/todos/:id", checksExistsUserAccount, (request, response) => {
     todo.title = title;
     todo.deadline = deadline;
 
-    return response.status(200).send();
+    return response.status(200).json(todo);
   }
 });
 
@@ -96,7 +96,7 @@ app.patch("/todos/:id/done", checksExistsUserAccount, (request, response) => {
     return response.status(404).json({ error: "Todo not found!" });
   } else {
     todo.done = true;
-    return response.status(200).send();
+    return response.status(200).json(todo);
   }
 });
 
@@ -110,7 +110,7 @@ app.delete("/todos/:id", checksExistsUserAccount, (request, response) => {
     return response.status(404).json({ error: "Todo not found!" });
   } else {
     user.todos.splice(todo, 1);
-    return response.status(200).send();
+    return response.status(204).send();
   }
 });
 
